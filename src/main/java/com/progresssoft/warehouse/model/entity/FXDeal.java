@@ -17,11 +17,15 @@ public class FXDeal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String dealId;
+    @Column(nullable = false)
     private String fromCurrency;
+    @Column(nullable = false)
     private String toCurrency;
+    @Column(nullable = false)
     private String dealTimestamp;
+    @Column(nullable = false)
     private Double dealAmount;
 
 }

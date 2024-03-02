@@ -68,15 +68,16 @@ public class FXDealService {
     }
 
     private String validateNewFXDealDTO(FXDealDTO dto){
+        if (dto.getDealId() == null) return "Deal ID is Null";
         if (isFoundDealId(dto.getDealId())) return "Duplicate Deal ID";
         return validateUpdateFXDealDTO(dto);
     }
 
     private String validateUpdateFXDealDTO(FXDealDTO dto){
-        if (!isValidCurrency(dto.getToCurrency())) return "Not Valid ToCurrency";
-        if (!isValidCurrency(dto.getFromCurrency())) return "Not Valid FromCurrency";
-        if (!isValidTimestamp(dto.getDealTimestamp())) return "Not Valid Time stamp format yyyy-MM-dd'T'HH:mm:ss";
-        if (!isValidDealAmount(dto.getDealAmount())) return "Not Valid Deal Amount";
+        if (!isValidCurrency(dto.getToCurrency())) return "Not Valid ToCurrency or null";
+        if (!isValidCurrency(dto.getFromCurrency())) return "Not Valid FromCurrency or null";
+        if (!isValidTimestamp(dto.getDealTimestamp())) return "Not Valid Time stamp format (yyyy-MM-dd'T'HH:mm:ss) or null";
+        if (!isValidDealAmount(dto.getDealAmount())) return "Not Valid Deal Amount or null";
         return "Success";
     }
 
@@ -85,14 +86,17 @@ public class FXDealService {
     }
 
     private boolean isValidCurrency(String currency){
+        if (currency == null) return false;
         return currencies.contains(currency);
     }
 
     private boolean isValidDealAmount(Double dealAmount){
+        if (dealAmount == null) return false;
         return dealAmount > 0 ;
     }
 
     private boolean isValidTimestamp(String timestampString) {
+        if (timestampString == null) return false;
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
             LocalDateTime.parse(timestampString, formatter);

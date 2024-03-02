@@ -51,6 +51,7 @@ public class FXDealController {
         }
         catch (Exception e)
         {
+            dto.setStatus("Error occurred on DB operation");
             return new ResponseEntity<>(dto, HttpStatus.INTERNAL_SERVER_ERROR) ;
         }
     }
