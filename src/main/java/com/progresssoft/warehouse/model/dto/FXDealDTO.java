@@ -14,15 +14,8 @@ public class FXDealDTO {
     private String dealId;
     private String fromCurrency;
     private String toCurrency;
-    private Long dealTimestamp;
+    private String dealTimestamp;
     private Double dealAmount;
+    private String status;
 
-    public static FXDealDTO toDto(FXDeal entity){
-
-        return FXDealDTO.builder().dealId(entity.getDealId()).
-                fromCurrency(entity.getFromCurrency()).
-                toCurrency(entity.getToCurrency()).
-                dealTimestamp(entity.getDealTimestamp()).
-                dealAmount(entity.getDealAmount()).build();
-    }
 }

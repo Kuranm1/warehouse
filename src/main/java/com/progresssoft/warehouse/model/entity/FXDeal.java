@@ -17,18 +17,11 @@ public class FXDeal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String dealId;
     private String fromCurrency;
     private String toCurrency;
-    private Long dealTimestamp;
+    private String dealTimestamp;
     private Double dealAmount;
 
-    public static FXDeal toEntity (FXDealDTO dto){
-
-        return FXDeal.builder().dealId(dto.getDealId()).
-                fromCurrency(dto.getFromCurrency()).
-                toCurrency(dto.getToCurrency()).
-                dealTimestamp(dto.getDealTimestamp()).
-                dealAmount(dto.getDealAmount()).build();
-    }
 }
